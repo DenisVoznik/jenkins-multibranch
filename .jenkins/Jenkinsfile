@@ -21,7 +21,7 @@ pipeline {
         stage('Docker tag and push') {
             steps {
                 sh """
-                    docker tag terraform denisvoznik/terraform-dz:${env.BRANCH_NAME}
+                    docker tag denisvoznik/terraform-dz:${env.BRANCH_NAME}
                     docker push denisvoznik/terraform-dz:${env.BRANCH_NAME}
                 """
             }
