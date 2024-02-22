@@ -21,7 +21,7 @@ pipeline {
         stage('Docker tag and push') {
             steps {
                 sh """
-                    docker tag denisvoznik/terraform-dz:${env.BRANCH_NAME}
+                    docker tag terraform denisvoznik/terraform-dz:${env.BRANCH_NAME}
                     docker push denisvoznik/terraform-dz:${env.BRANCH_NAME}
                 """
             }
@@ -29,10 +29,10 @@ pipeline {
     }
     post { 
         success { 
-            echo 'Success!'
+            githubNotify status: "SUCCESS", description: 'Success status'
         }
         failure {
-            echo 'Failure!'
+            githubNotify status: "FAILURE", description: 'Failure status'
         }
     }
 }
